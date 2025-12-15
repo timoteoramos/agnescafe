@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Development Server",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/agnescafe/manage.py",
+      "args": [
+        "runserver",
+      ],
+      "console": "internalConsole",
+      "django": true
+    }
+  ]
+}

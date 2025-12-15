@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "DavidAnson.vscode-markdownlint",
+    "donjayamanne.python-extension-pack",
+    "EditorConfig.EditorConfig",
+    "github.vscode-github-actions",
+    "IronGeek.vscode-env",
+    "ms-azuretools.vscode-containers",
+    "ms-python.debugpy"
+  ],
+}
