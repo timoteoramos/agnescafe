@@ -1,0 +1,5 @@
+*.env  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf diff=markdown
+*.py   text eol=lf diff=python
+*.yml  text eol=lf
