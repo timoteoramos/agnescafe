@@ -10,6 +10,7 @@ dependencies = [
     "gunicorn>=23.0.0",
     "psycopg[binary]>=3.3.2",
     "uvicorn>=0.40.0",
+    "whitenoise[brotli]>=6.11.0",
 ]
 
 [dependency-groups]

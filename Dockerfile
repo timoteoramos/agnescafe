@@ -18,3 +18,5 @@ COPY ./pyproject.toml ./README.md ./uv.lock /srv/
 RUN uv sync
 
 COPY ./src /srv/src
+
+RUN uv run django collectstatic --noinput
