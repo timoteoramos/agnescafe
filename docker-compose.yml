@@ -1,0 +1,28 @@
+services:
+  app:
+    image: "docker.io/timoteoramos/agnescafe:latest"
+    build:
+      context: "."
+      target: "production"
+    env_file:
+      - ".env"
+      - "docker.env"
+    ports:
+      - mode: "host"
+        published: 8001
+        target: 8000
+
+  postgresql:
+    image: "docker.io/library/postgres:18-alpine"
+    env_file:
+      - ".env"
+      - "docker.env"
+    ports:
+      - mode: "host"
+        published: 5432
+        target: 5432
+    volumes:
+      - "postgresql_data:/var/lib/postgresql/data"
+
+volumes:
+  postgresql_data:

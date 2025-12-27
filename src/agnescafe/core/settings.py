@@ -15,6 +15,7 @@ import environ
 
 env = environ.Env(
     ALLOWED_HOSTS=(list, ['*']),
+    DATABASE_URL=(str, ''),
     DEBUG=(bool, False),
     LANGUAGE_CODE=(str, 'pt-br'),
     SECRET_KEY=(str, None),
@@ -82,10 +83,7 @@ WSGI_APPLICATION = "agnescafe.core.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": env.db(),
 }
 
 
