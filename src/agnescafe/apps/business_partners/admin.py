@@ -1,12 +1,14 @@
 from django.contrib import admin
+from .forms import ClientForm
 from .models import Client, Supplier
 
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     exclude = ["is_removed"]
-    list_display = ("name", "created",)
-    search_fields = ("name",)
+    form = ClientForm
+    list_display = ("name", "phone_number", "created",)
+    search_fields = ("name", "phone_number",)
     list_filter = ("created",)
 
 

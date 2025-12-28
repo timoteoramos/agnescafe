@@ -1,11 +1,18 @@
 from django.db import models
 from model_utils.models import SoftDeletableModel, TimeStampedModel
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Client(SoftDeletableModel, TimeStampedModel):
     name = models.CharField(
         max_length=64,
         verbose_name="nome",
+    )
+
+    phone_number = PhoneNumberField(
+        blank=True,
+        null=True,
+        verbose_name="número de telefone",
     )
 
     def __str__(self):

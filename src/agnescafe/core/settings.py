@@ -18,6 +18,7 @@ env = environ.Env(
     DATABASE_URL=(str, ''),
     DEBUG=(bool, False),
     LANGUAGE_CODE=(str, 'pt-br'),
+    PHONENUMBER_DEFAULT_REGION=(str, 'BR'),
     SECRET_KEY=(str, None),
     TZ=(str, "Etc/UTC"),
 )
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
+    "phonenumber_field",
     "agnescafe.apps.business_partners",
     "agnescafe.apps.catalog",
     "agnescafe.apps.warehouse",
@@ -117,6 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = env("LANGUAGE_CODE")
+
+PHONENUMBER_DEFAULT_REGION = env("PHONENUMBER_DEFAULT_REGION")
 
 TIME_ZONE = env("TZ")
 
