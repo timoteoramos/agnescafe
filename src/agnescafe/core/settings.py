@@ -48,6 +48,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
+    "agnescafe.apps.business_partners",
+    "agnescafe.apps.catalog",
+    "agnescafe.apps.warehouse",
+    "agnescafe.apps.finnancial",
+    "agnescafe.apps.commercial",
 ]
 
 MIDDLEWARE = [
