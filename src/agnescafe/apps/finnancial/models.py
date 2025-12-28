@@ -42,7 +42,7 @@ class CashFlow(SoftDeletableModel, TimeStampedModel):
     )
 
     def __str__(self):
-        return f"{self.created} {"Entrada" if self.input else "Saída"}: R$ {self.total}"
+        return f"{self.description}: R$ {self.total}"
 
     class Meta:
         ordering = ["-created"]

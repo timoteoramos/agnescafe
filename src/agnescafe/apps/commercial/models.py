@@ -22,7 +22,7 @@ class BaseOperation(SoftDeletableModel, TimeStampedModel):
     )
 
     def __str__(self):
-        return f"{self.created} - R$ {self.total}"
+        return f"Venda #{self.pk}: R$ {self.total}"
 
     class Meta:
         abstract = True
