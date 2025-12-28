@@ -42,6 +42,7 @@ class Purchase(BaseOperation):
     )
 
     class Meta:
+        ordering = ["-created"]
         verbose_name = "compra"
         verbose_name_plural = "compras"
 
@@ -109,6 +110,7 @@ class Sale(BaseOperation):
     )
 
     class Meta:
+        ordering = ["-created"]
         verbose_name = "venda"
         verbose_name_plural = "vendas"
 

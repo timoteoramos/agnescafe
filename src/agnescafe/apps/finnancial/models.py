@@ -12,6 +12,7 @@ class PaymentMethod(SoftDeletableModel, TimeStampedModel):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "método de pagamento"
         verbose_name_plural = "métodos de pagamento"
 
@@ -43,6 +44,7 @@ class CashFlow(SoftDeletableModel, TimeStampedModel):
         return f"{self.created} {"Entrada" if self.input else "Saída"}: R$ {self.total}"
 
     class Meta:
+        ordering = ["-created"]
         verbose_name = "fluxo de caixa"
         verbose_name_plural = "fluxos de caixa"
 

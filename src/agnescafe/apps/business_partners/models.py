@@ -12,6 +12,7 @@ class Client(SoftDeletableModel, TimeStampedModel):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "cliente"
         verbose_name_plural = "clientes"
 
@@ -25,5 +26,6 @@ class Supplier(SoftDeletableModel, TimeStampedModel):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "fornecedor"
         verbose_name_plural = "fornecedores"

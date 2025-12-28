@@ -35,6 +35,7 @@ class Input(MeasurementModel, SoftDeletableModel, TimeStampedModel):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "insumo"
         verbose_name_plural = "insumos"
 
@@ -61,6 +62,7 @@ class Packet(SoftDeletableModel, TimeStampedModel):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "pacote"
         verbose_name_plural = "pacotes"
 
@@ -81,6 +83,7 @@ class Product(MeasurementModel, SoftDeletableModel, TimeStampedModel):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "produto"
         verbose_name_plural = "produtos"
 
