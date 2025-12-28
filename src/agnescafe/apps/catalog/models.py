@@ -28,6 +28,7 @@ class Input(MeasurementModel, SoftDeletableModel, TimeStampedModel):
     amount = models.DecimalField(
         max_digits=6,
         decimal_places=4,
+        default=1,
         verbose_name="quantidade",
     )
 
@@ -55,6 +56,7 @@ class Packet(SoftDeletableModel, TimeStampedModel):
     amount = models.DecimalField(
         max_digits=6,
         decimal_places=4,
+        default=1,
         verbose_name="quantidade",
     )
 
@@ -76,6 +78,7 @@ class Product(MeasurementModel, SoftDeletableModel, TimeStampedModel):
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,
+        default=0,
         verbose_name="preço",
     )
 
@@ -105,6 +108,7 @@ class ProductInput(SoftDeletableModel, TimeStampedModel):
     amount = models.DecimalField(
         max_digits=6,
         decimal_places=4,
+        default=1,
         verbose_name="quantidade",
     )
 

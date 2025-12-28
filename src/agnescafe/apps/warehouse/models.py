@@ -11,6 +11,7 @@ class StockItem(SoftDeletableModel, TimeStampedModel):
     )
 
     amount = models.PositiveIntegerField(
+        default=1,
         verbose_name="quantidade",
     )
 

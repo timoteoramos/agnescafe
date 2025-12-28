@@ -37,6 +37,7 @@ class CashFlow(SoftDeletableModel, TimeStampedModel):
     total = models.DecimalField(
         max_digits=8,
         decimal_places=2,
+        default=0,
         verbose_name="total",
     )
 
@@ -65,6 +66,7 @@ class Payment(SoftDeletableModel, TimeStampedModel):
     amount = models.DecimalField(
         max_digits=8,
         decimal_places=2,
+        default=1,
         verbose_name="valor",
     )
 
