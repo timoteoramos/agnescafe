@@ -9,6 +9,12 @@ class Client(SoftDeletableModel, TimeStampedModel):
         verbose_name="nome",
     )
 
+    house_number = models.PositiveSmallIntegerField(
+        blank=True,
+        null=True,
+        verbose_name="número da casa",
+    )
+
     phone_number = PhoneNumberField(
         blank=True,
         null=True,
@@ -16,7 +22,7 @@ class Client(SoftDeletableModel, TimeStampedModel):
     )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.house_number}" if self.house_number else self.name
 
     class Meta:
         ordering = ["name"]
