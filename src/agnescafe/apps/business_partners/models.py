@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from model_utils.models import SoftDeletableModel, TimeStampedModel
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -23,6 +24,18 @@ class Client(SoftDeletableModel, TimeStampedModel):
 
     def __str__(self):
         return f"{self.name} - {self.house_number}" if self.house_number else self.name
+
+    def get_absolute_url(self):
+        return reverse("client_detail", kwargs={"pk": self.pk})
+
+    def get_pending_orders(self):
+        return self.sale_set.filter(paid=False)
+
+    def has_pending_orders(self):
+        return self.get_pending_orders().count() > 0
+
+    def total_pending_amount(self):
+        return sum(order.total for order in self.get_pending_orders())
 
     class Meta:
         ordering = ["name"]

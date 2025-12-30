@@ -10,6 +10,7 @@ dependencies = [
     { name = "django-environ" },
     { name = "django-model-utils" },
     { name = "django-phonenumber-field", extra = ["phonenumberslite"] },
+    { name = "django-settings-export" },
     { name = "gunicorn" },
     { name = "psycopg", extra = ["binary"] },
     { name = "uvicorn" },
@@ -27,6 +28,7 @@ requires-dist = [
     { name = "django-environ", specifier = ">=0.12.0" },
     { name = "django-model-utils", specifier = ">=5.0.0" },
     { name = "django-phonenumber-field", extras = ["phonenumberslite"], specifier = ">=8.4.0" },
+    { name = "django-settings-export", specifier = ">=1.2.1" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.2" },
     { name = "uvicorn", specifier = ">=0.40.0" },
@@ -188,6 +190,15 @@ wheels = [
 phonenumberslite = [
     { name = "phonenumberslite" },
 ]
+
+[[package]]
+name = "django-settings-export"
+version = "1.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d6/72/9848a2d631dad70d7ea582540f0619e1a7ecf31b3a117de9d9f2b6b28029/django-settings-export-1.2.1.tar.gz", hash = "sha256:fceeae49fc597f654c1217415d8e049fc81c930b7154f5d8f28c432db738ff79", size = 4951, upload-time = "2016-11-06T11:18:58Z" }
 
 [[package]]
 name = "gunicorn"

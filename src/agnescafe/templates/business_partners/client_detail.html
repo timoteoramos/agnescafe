@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Cliente</h2>
+<h3>Detalhes</h3>
+<ul>
+  <li>
+    <strong>Nome: </strong>
+    <span>{{ object.name }}<span>
+  </li>
+  {% if object.house_number %}<li>
+    <strong>Casa: </strong>
+    <span>{{ object.house_number }}</span>
+  </li>{% endif %}
+  {% if object.phone_number %}<li>
+    <strong>Contato: </strong>
+    <span>{{ object.phone_number.as_national }} - </span>
+    <a href="https://wa.me/{{ object.phone_number.as_e164|slice:"1:" }}" target="_blank">WhatsApp<a>
+  </li>{% endif %}
+</ul>
+<h3>Contas a Pagar</h3>
+{% if object.has_pending_orders %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Data</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sale in object.get_pending_orders %}
+    <tr>
+      <td>{{ sale.id }}</td>
+      <td>{{ sale.created|date:"d/m/Y H:m:s" }}</td>
+      <td>R$ {{ sale.total|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td>&nbsp;</td>
+      <td align="right"><strong>Total:</strong></td>
+      <td>R$ {{ object.total_pending_amount|floatformat:2 }}</td>
+    </tr>
+  </tbody>
+</table>
+{% else %}
+<p>Nenhuma conta a pagar.</p>
+{% endif %}
+{% endblock content %}

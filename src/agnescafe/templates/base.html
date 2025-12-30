@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="{{ settings.LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agnes Café</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <meta name="description" content="Agnes Café" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <link rel="icon" href="{% static "meta/favicon.ico" %}" sizes="any" />
+    <link rel="icon" href="{% static "meta/icon.svg" %}" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="{% static "meta/icon.png" %}" />
+    <link rel="manifest" href="{% static "meta/site.webmanifest" %}" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+  <body>
+    <h1>Agnes Café</h1>
+    {% block content %}{% endblock content %}
+  </body>
+</html>
