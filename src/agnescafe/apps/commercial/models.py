@@ -21,9 +21,6 @@ class BaseOperation(SoftDeletableModel, TimeStampedModel):
         verbose_name="total",
     )
 
-    def __str__(self):
-        return f"Venda #{self.pk}: R$ {self.total}"
-
     class Meta:
         abstract = True
 
@@ -40,6 +37,9 @@ class Purchase(BaseOperation):
         through="PurchaseItem",
         verbose_name="pacotes",
     )
+
+    def __str__(self):
+        return f"Compra #{self.pk}: R$ {self.total}"
 
     class Meta:
         ordering = ["-created"]
@@ -110,6 +110,9 @@ class Sale(BaseOperation):
         default=False,
         verbose_name="pago",
     )
+
+    def __str__(self):
+        return f"Venda #{self.pk}: R$ {self.total}"
 
     class Meta:
         ordering = ["-created"]
