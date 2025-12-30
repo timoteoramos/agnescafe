@@ -11,7 +11,7 @@ class ProductInputInline(admin.StackedInline):
 @admin.register(Input)
 class InputAdmin(admin.ModelAdmin):
     exclude = ["is_removed"]
-    list_display = ("name", "amount", "created",)
+    list_display = ("name", "measurement", "amount", "created",)
     search_fields = ("name",)
     list_filter = ("created",)
 
@@ -19,7 +19,7 @@ class InputAdmin(admin.ModelAdmin):
 @admin.register(Packet)
 class PacketAdmin(admin.ModelAdmin):
     exclude = ["is_removed"]
-    list_display = ("name", "amount", "created",)
+    list_display = ("name", "input__measurement", "amount", "created",)
     search_fields = ("name",)
     list_filter = ("created",)
 
