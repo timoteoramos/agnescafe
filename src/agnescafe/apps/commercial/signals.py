@@ -18,7 +18,7 @@ def calculate_transaction(sender, **kwargs):
     is_sale = sender is Sale or sender is SaleItem
     total = 0
 
-    transaction = kwargs["instance"] if (sender is Sale or sender is Purchase) else kwargs["instance"].sale
+    transaction = kwargs["instance"] if (sender is Sale or sender is Purchase) else (kwargs["instance"].sale if is_sale else kwargs["instance"].purchase)
 
     for item in get_transaction_items(transaction, is_sale):
         total += item.amount * item.price
