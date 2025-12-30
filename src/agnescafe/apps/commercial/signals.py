@@ -1,5 +1,12 @@
-from .models import Sale, SaleItem
+from .models import Purchase, PurchaseItem, Sale, SaleItem
 from agnescafe.apps.finnancial.models import CashFlow
+
+
+def get_transaction_items(transaction, is_sale):
+    if is_sale:
+        return SaleItem.objects.filter(sale=transaction)
+    else:
+        return PurchaseItem.objects.filter(purchase=transaction)
 
 
 def adjust_item(sender, **kwargs):
@@ -7,21 +14,24 @@ def adjust_item(sender, **kwargs):
         kwargs["instance"].price = kwargs["instance"].product.price
 
 
-def calculate_sale(sender, **kwargs):
+def calculate_transaction(sender, **kwargs):
+    is_sale = sender is Sale or sender is SaleItem
     total = 0
-    sale = kwargs["instance"] if sender is Sale else kwargs["instance"].sale
 
-    for item in SaleItem.objects.filter(sale=sale):
+    transaction = kwargs["instance"] if (sender is Sale or sender is Purchase) else kwargs["instance"].sale
+
+    for item in get_transaction_items(transaction, is_sale):
         total += item.amount * item.price
 
-    total -= sale.discount
+    if is_sale:
+        total -= transaction.discount
 
-    if sale.paid:
-        if not sale.cash_flow:
-            sale.cash_flow = CashFlow(description=f"Venda #{sale.pk}")
+    if not is_sale or transaction.paid:
+        if not transaction.cash_flow:
+            transaction.cash_flow = CashFlow(description=f"{"Venda" if is_sale else "Compra"} #{transaction.pk}")
 
-        sale.cash_flow.input = True
-        sale.cash_flow.total = total
-        sale.cash_flow.save()
+        transaction.cash_flow.input = is_sale
+        transaction.cash_flow.total = total
+        transaction.cash_flow.save()
 
-    Sale.objects.filter(pk=sale.pk).update(cash_flow=sale.cash_flow, total=total)
+    (Sale if is_sale else Purchase).objects.filter(pk=transaction.pk).update(cash_flow=transaction.cash_flow, total=total)

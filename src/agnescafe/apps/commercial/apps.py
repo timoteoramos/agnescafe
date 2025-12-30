@@ -6,9 +6,11 @@ class CommercialConfig(AppConfig):
     verbose_name = "Comercial"
 
     def ready(self):
-        from .signals import calculate_sale, adjust_item
-        from .models import Sale, SaleItem
+        from .signals import adjust_item, calculate_transaction
+        from .models import Purchase, PurchaseItem, Sale, SaleItem
 
         pre_save.connect(adjust_item, sender=SaleItem)
-        post_save.connect(calculate_sale, sender=Sale)
-        post_save.connect(calculate_sale, sender=SaleItem)
+        post_save.connect(calculate_transaction, sender=Purchase)
+        post_save.connect(calculate_transaction, sender=PurchaseItem)
+        post_save.connect(calculate_transaction, sender=Sale)
+        post_save.connect(calculate_transaction, sender=SaleItem)
