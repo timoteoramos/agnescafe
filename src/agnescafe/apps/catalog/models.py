@@ -5,6 +5,7 @@ from model_utils.models import SoftDeletableModel, TimeStampedModel
 class MeasurementModel(models.Model):
     class Measurement(models.TextChoices):
         UNIT = "UN", "unidade"
+        KILOGRAM = "KG", "quilograma"
         GRAM = "G", "grama"
         LITER = "L", "litro"
 
@@ -26,7 +27,7 @@ class Input(MeasurementModel, SoftDeletableModel, TimeStampedModel):
     )
 
     amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=4,
         default=1,
         verbose_name="quantidade",
@@ -54,7 +55,7 @@ class Packet(SoftDeletableModel, TimeStampedModel):
     )
 
     amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=4,
         default=1,
         verbose_name="quantidade",
@@ -106,7 +107,7 @@ class ProductInput(SoftDeletableModel, TimeStampedModel):
     )
 
     amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=4,
         default=1,
         verbose_name="quantidade",

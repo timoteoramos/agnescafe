@@ -62,7 +62,7 @@ class PurchaseItem(SoftDeletableModel, TimeStampedModel):
     )
 
     amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=4,
         default=1,
         verbose_name="quantidade",
@@ -135,7 +135,7 @@ class SaleItem(SoftDeletableModel, TimeStampedModel):
     )
 
     amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=4,
         default=1,
         verbose_name="quantidade",
