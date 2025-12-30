@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Cliente</h2>
+<h3>Detalhes</h3>
+<ul>
+  <li>
+    <strong>Cliente: </strong>
+    {% if object.client %}
+    <a href="{{ object.client.get_absolute_url }}">{{ object.client }}</a>
+    {% else %}
+    <span>Avulso<span>
+    {% endif %}
+  </li>
+  {% if object.discount > 0 %}
+  <li>
+    <strong>Desconto: </strong>
+    <span>R$ {{ sale.discount|floatformat:2 }}</span>
+  </li>
+  {% endif %}
+</ul>
+{% if object.items.count > 0 %}
+<h3>Itens da venda</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object.items.all %}
+    <tr>
+      <td>{{ item.product }}</td>
+      <td>{{ item.amount|floatformat:4 }}</td>
+      <td>R$ {{ item.price|floatformat:2 }}</td>
+      <td>R$ {{ item.total_price|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td align="right"><strong>Total:</strong></td>
+      <td>R$ {{ object.total|floatformat:2 }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endif %}
+{% endblock content %}

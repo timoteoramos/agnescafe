@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from model_utils.models import SoftDeletableModel, TimeStampedModel
 from agnescafe.apps.business_partners.models import Client, Supplier
 from agnescafe.apps.catalog.models import Packet, Product
@@ -114,6 +115,9 @@ class Sale(BaseOperation):
     def __str__(self):
         return f"Venda #{self.pk}: R$ {self.total}"
 
+    def get_absolute_url(self):
+        return reverse("sale_detail", kwargs={"pk": self.pk})
+
     class Meta:
         ordering = ["-created"]
         verbose_name = "venda"
@@ -150,6 +154,9 @@ class SaleItem(SoftDeletableModel, TimeStampedModel):
 
     def __str__(self):
         return f"{self.amount} {self.product.measurement} {self.product.name}"
+
+    def total_price(self):
+        return self.amount * self.price
 
     class Meta:
         unique_together = ("sale", "product",)

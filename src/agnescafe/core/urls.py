@@ -22,5 +22,6 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("business_partners/", include("agnescafe.apps.business_partners.urls")),
+    path("commercial/", include("agnescafe.apps.commercial.urls")),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 ]

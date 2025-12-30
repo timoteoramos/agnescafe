@@ -7,15 +7,19 @@
     <strong>Nome: </strong>
     <span>{{ object.name }}<span>
   </li>
-  {% if object.house_number %}<li>
+  {% if object.house_number %}
+  <li>
     <strong>Casa: </strong>
     <span>{{ object.house_number }}</span>
-  </li>{% endif %}
-  {% if object.phone_number %}<li>
+  </li>
+  {% endif %}
+  {% if object.phone_number %}
+  <li>
     <strong>Contato: </strong>
     <span>{{ object.phone_number.as_national }} - </span>
     <a href="https://wa.me/{{ object.phone_number.as_e164|slice:"1:" }}" target="_blank">WhatsApp<a>
-  </li>{% endif %}
+  </li>
+  {% endif %}
 </ul>
 <h3>Contas a Pagar</h3>
 {% if object.has_pending_orders %}
@@ -30,8 +34,8 @@
   <tbody>
     {% for sale in object.get_pending_orders %}
     <tr>
-      <td>{{ sale.id }}</td>
-      <td>{{ sale.created|date:"d/m/Y H:m:s" }}</td>
+      <td><a href="{{ sale.get_absolute_url }}">{{ sale.id }}</a></td>
+      <td><a href="{{ sale.get_absolute_url }}">{{ sale.created|date:"d/m/Y H:m:s" }}</a></td>
       <td>R$ {{ sale.total|floatformat:2 }}</td>
     </tr>
     {% endfor %}
