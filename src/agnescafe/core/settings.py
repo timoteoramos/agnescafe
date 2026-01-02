@@ -15,6 +15,7 @@ import environ
 
 env = environ.Env(
     ALLOWED_HOSTS=(list, ['*']),
+    CSRF_TRUSTED_ORIGINS=(list, []),
     DATABASE_URL=(str, ''),
     DEBUG=(bool, False),
     LANGUAGE_CODE=(str, 'pt-br'),
@@ -37,6 +38,8 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+
+CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 
 
 # Application definition
